@@ -11,7 +11,7 @@ import com.anil.notes24.model.Note
 @Dao
 interface NoteDao {
     // get all notes
-    @Query("Select * from notes")
+    @Query("Select * from notes order by createdAt DESC")
     fun getAll(): LiveData<List<Note>>
 
     // insert note
@@ -25,4 +25,8 @@ interface NoteDao {
     // delete note
     @Delete
     fun deleteNote(note: Note)
+
+    // delete all notes
+    @Query("DELETE from notes")
+    fun deleteAll()
 }

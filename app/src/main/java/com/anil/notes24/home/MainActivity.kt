@@ -4,16 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import com.anil.notes24.R
 import com.anil.notes24.createnote.AddNoteActivity
 import com.anil.notes24.databinding.ActivityMainBinding
 import com.anil.notes24.model.Note
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: NotesListAdapter
     private val viewModel: MainViewModel by viewModels()
+    private var isNotesPresent: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,9 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
             Log.e("MainActivity", "$it")
             binding.emptyMessage.isVisible = it.isEmpty()
             adapter.submitList(it)
+
+            isNotesPresent = it.isNotEmpty()
+            invalidateOptionsMenu()
         }
     }
 
@@ -41,5 +49,30 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
         }
 
         startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if(isNotesPresent){
+            menuInflater.inflate(R.menu.menu_home, menu)
+        }
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.delete -> {
+                MaterialAlertDialogBuilder(this).setTitle(resources.getString(R.string.are_you_sure))
+                    .setMessage(getString(R.string.delete_all_notes))
+                    .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
+                        // Respond to negative button press
+                    }
+                    .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                        viewModel.deleteAll()
+                    }
+                    .show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
