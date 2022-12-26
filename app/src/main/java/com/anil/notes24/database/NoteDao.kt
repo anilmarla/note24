@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.anil.notes24.model.Note
 
@@ -16,6 +17,10 @@ interface NoteDao {
     // insert note
     @Insert
     fun insert(note: Note)
+
+    // updating note
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun update(note: Note)
 
     // delete note
     @Delete

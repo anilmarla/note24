@@ -10,7 +10,7 @@ import com.anil.notes24.model.Note
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NotesListAdapter() :
+class NotesListAdapter(val listener: NotesListAdapterListener) :
     ListAdapter<Note, NotesListAdapter.NoteItemViewHolder>(NoteDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
@@ -21,7 +21,6 @@ class NotesListAdapter() :
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
@@ -30,12 +29,16 @@ class NotesListAdapter() :
 
     inner class NoteItemViewHolder(val binding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(notes: Note) {
-            binding.noteLines.text = notes.note
-            binding.date.text = formatDate(Date(notes.createdAt))
+        fun bind(note: Note) {
+            binding.noteLines.text = note.note
+            binding.date.text = formatDate(Date(note.createdAt))
+
+            binding.root.setOnClickListener {
+                listener.onNoteClicked(note)
+            }
         }
 
-        private fun formatDate(date: Date): String{
+        private fun formatDate(date: Date): String {
             val formatter = SimpleDateFormat("MM/dd/yyyy, hh:mm a", Locale.US)
             return formatter.format(date)
         }
@@ -49,7 +52,10 @@ class NotesListAdapter() :
         override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem == newItem
         }
+    }
 
+    interface NotesListAdapterListener{
+        fun onNoteClicked(note: Note)
     }
 }
 

@@ -16,17 +16,36 @@ class AddNoteViewModel(application: Application) : AndroidViewModel(application)
 
     init {
         val notesDao = AppDatabase.getDatabase(application).noteDao()
+
         notesRepository = NotesRepository(notesDao)
     }
 
     fun addNote(note: String) {
+
         val n = Note(
             id = UUID.randomUUID().toString(),
             note = note,
             createdAt = Date().time
         )
+
         viewModelScope.launch(Dispatchers.IO) {
             notesRepository.insert(n)
+        }
+    }
+
+    fun updateNote(note: Note?){
+        note?.let {
+            viewModelScope.launch(Dispatchers.IO) {
+                notesRepository.update(note)
+            }
+        }
+    }
+
+    fun deleteNote(note: Note?){
+        note?.let {
+            viewModelScope.launch(Dispatchers.IO) {
+                notesRepository.delete(note)
+            }
         }
     }
 }
