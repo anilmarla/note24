@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/txt_title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="@id/note_lines"
         app:layout_constraintTop_toBottomOf="@id/note_lines"
         android:textColor="@color/gray"
-        android:textSize="14sp"
+        android:textSize="@dimen/txt_subtitle"
         android:layout_marginTop="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

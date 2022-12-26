@@ -1,6 +1,5 @@
-package com.anil.notes24.notes
+package com.anil.notes24.home
 
-import android.icu.text.Transliterator.Position
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -33,7 +32,7 @@ class NotesListAdapter() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(notes: Note) {
             binding.noteLines.text = notes.note
-            binding.date.text = formatDate(notes.createdAt)
+            binding.date.text = formatDate(Date(notes.createdAt))
         }
 
         private fun formatDate(date: Date): String{

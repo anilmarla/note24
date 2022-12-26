@@ -1,9 +1,11 @@
 package com.anil.notes24.model
 
-import java.util.Date
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "notes")
 data class Note(
-    val id: String,
+    @PrimaryKey val id: String,
     val note: String,
-    val createdAt: Date
+    val createdAt: Long
 )
