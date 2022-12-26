@@ -7,10 +7,7 @@ import androidx.room.RoomDatabase
 import com.anil.notes24.model.Note
 
 @Database(
-    entities = [
-        Note::class
-    ],
-    version = 1
+    entities = [Note::class], version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun noteDao(): NoteDao
@@ -27,10 +24,8 @@ abstract class AppDatabase : RoomDatabase() {
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "note_database"
-                ).build()
+                    context.applicationContext, AppDatabase::class.java, "note_database"
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 // return instance
                 instance

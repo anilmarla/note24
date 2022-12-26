@@ -6,7 +6,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/note_lines"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -16,11 +16,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_note"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
+
+    <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/note_lines"
-        app:layout_constraintTop_toBottomOf="@id/note_lines"
+        app:layout_constraintStart_toStartOf="@id/note"
+        app:layout_constraintTop_toBottomOf="@id/note"
         android:textColor="@color/gray"
         android:textSize="@dimen/txt_subtitle"
         android:layout_marginTop="8dp"/>

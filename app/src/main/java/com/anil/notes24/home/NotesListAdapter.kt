@@ -30,7 +30,8 @@ class NotesListAdapter(val listener: NotesListAdapterListener) :
     inner class NoteItemViewHolder(val binding: ListItemNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(note: Note) {
-            binding.noteLines.text = note.note
+            binding.title.text = note.title
+            binding.note.text = note.note.replace("\n", ", ")
             binding.date.text = formatDate(Date(note.createdAt))
 
             binding.root.setOnClickListener {
@@ -54,7 +55,7 @@ class NotesListAdapter(val listener: NotesListAdapterListener) :
         }
     }
 
-    interface NotesListAdapterListener{
+    interface NotesListAdapterListener {
         fun onNoteClicked(note: Note)
     }
 }

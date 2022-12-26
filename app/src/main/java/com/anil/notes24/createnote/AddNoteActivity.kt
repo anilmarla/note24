@@ -32,6 +32,7 @@ class AddNoteActivity : AppCompatActivity() {
             // editing note
             title = getString(R.string.edit_note)
             binding.txtInputEdit.text = Editable.Factory.getInstance().newEditable(note?.note)
+            binding.txtInputEditTitle.text = Editable.Factory.getInstance().newEditable(note?.title)
             binding.btnCreate.text = getString(R.string.update_note)
         }
 
@@ -39,14 +40,16 @@ class AddNoteActivity : AppCompatActivity() {
         binding.txtInputEdit.requestFocus()
 
         binding.btnCreate.setOnClickListener {
-            val txt = binding.txtInputEdit.text
+            val title = binding.txtInputEditTitle.text
+            val message = binding.txtInputEdit.text
 
             if (note == null) {
-                viewModel.addNote(txt.toString())
+                viewModel.addNote(note = message.toString(), title = title.toString())
                 Toast.makeText(this, "Note is added!", Toast.LENGTH_LONG).show()
             } else {
                 // update note text
-                note?.note = txt.toString()
+                note?.note = message.toString()
+                note?.title = title.toString()
 
                 viewModel.updateNote(note)
                 Toast.makeText(this, "Note is updated!", Toast.LENGTH_LONG).show()

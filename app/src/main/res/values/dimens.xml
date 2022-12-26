@@ -2,5 +2,6 @@
 <resources>
     <dimen name="default_margin">16dp</dimen>
     <dimen name="txt_title">18sp</dimen>
+    <dimen name="txt_note">16sp</dimen>
     <dimen name="txt_subtitle">14sp</dimen>
 </resources>
