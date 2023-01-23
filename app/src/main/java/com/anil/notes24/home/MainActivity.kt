@@ -1,12 +1,12 @@
 package com.anil.notes24.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.anil.notes24.R
 import com.anil.notes24.createnote.AddNoteActivity
@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
 
         viewModel.notes.observe(this) {
             Log.e("MainActivity", "$it")
+
             binding.emptyMessage.isVisible = it.isEmpty()
             adapter.submitList(it)
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(isNotesPresent){
+        if (isNotesPresent) {
             menuInflater.inflate(R.menu.menu_home, menu)
         }
 

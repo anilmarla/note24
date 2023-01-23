@@ -40,16 +40,31 @@ class AddNoteActivity : AppCompatActivity() {
         binding.txtInputEdit.requestFocus()
 
         binding.btnCreate.setOnClickListener {
-            val title = binding.txtInputEditTitle.text
-            val message = binding.txtInputEdit.text
+            val title = binding.txtInputEditTitle.text.toString()
+            val message = binding.txtInputEdit.text.toString()
+
+            if (title.isBlank()) {
+                binding.txtInputEditTitle.error = "Please type the Title"
+                binding.txtInputEditTitle.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (message.isBlank()) {
+                binding.txtInputEdit.error = "Please type the note"
+                binding.txtInputEdit.requestFocus()
+                return@setOnClickListener
+            }
+
+            binding.txtInputEdit.error = null
+            binding.txtInputTitle.error = null
 
             if (note == null) {
-                viewModel.addNote(note = message.toString(), title = title.toString())
+                viewModel.addNote(note = message, title = title)
                 Toast.makeText(this, "Note is added!", Toast.LENGTH_LONG).show()
             } else {
                 // update note text
-                note?.note = message.toString()
-                note?.title = title.toString()
+                note?.note = message
+                note?.title = title
 
                 viewModel.updateNote(note)
                 Toast.makeText(this, "Note is updated!", Toast.LENGTH_LONG).show()

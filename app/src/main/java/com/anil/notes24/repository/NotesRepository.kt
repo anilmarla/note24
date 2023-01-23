@@ -5,7 +5,6 @@ import com.anil.notes24.database.NoteDao
 import com.anil.notes24.model.Note
 
 class NotesRepository(private val notesDao: NoteDao) {
-
     /**
      * Get all notes from database
      * */
