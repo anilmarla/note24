@@ -10,7 +10,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Note(
     @PrimaryKey val id: String,
-    var title: String,
-    var note: String,
-    val createdAt: Long
+    var todo: String? = null,
+    var title: String? = null,
+    var note: String? = null,
+    var completed: Boolean? = null,
+    var userId: Int? = null,
+    val createdAt: Long? = null
 ) : Parcelable

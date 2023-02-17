@@ -9,13 +9,19 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.anil.notes24.R
 import com.anil.notes24.databinding.ActivityAddNoteBinding
+import com.anil.notes24.home.MainViewModel
+import com.anil.notes24.home.NotesListAdapter
 import com.anil.notes24.model.Note
+import com.anil.notes24.network.responseData
+import com.anil.notes24.ui.main.LoginViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class AddNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddNoteBinding
     private val viewModel: AddNoteViewModel by viewModels()
+    private val notesViewModel: MainViewModel by viewModels()
     private var note: Note? = null
+    private var userId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +30,20 @@ class AddNoteActivity : AppCompatActivity() {
 
         // reading note from intent
         note = intent.getParcelableExtra("note")
+
+        //loginViewModel.getUser()
+
+        viewModel.getUser()
+        viewModel.user.observe(this) {
+            userId = it.id
+        }
+
+        /*
+        loginViewModel.loggedInUser.observe(this){
+            it?.let {
+                userId = it.id
+            }
+        }*/
 
         if (note == null) {
             // creating new note
@@ -40,6 +60,7 @@ class AddNoteActivity : AppCompatActivity() {
         binding.txtInputEdit.requestFocus()
 
         binding.btnCreate.setOnClickListener {
+
             val title = binding.txtInputEditTitle.text.toString()
             val message = binding.txtInputEdit.text.toString()
 
@@ -59,8 +80,14 @@ class AddNoteActivity : AppCompatActivity() {
             binding.txtInputTitle.error = null
 
             if (note == null) {
-                viewModel.addNote(note = message, title = title)
+                userId?.let {
+                    notesViewModel.addToDo(
+                        message, userId = it,true)
+                }
+
+                viewModel.addNote(todo = message, title = title)
                 Toast.makeText(this, "Note is added!", Toast.LENGTH_LONG).show()
+                finish()
             } else {
                 // update note text
                 note?.note = message
@@ -69,8 +96,8 @@ class AddNoteActivity : AppCompatActivity() {
                 viewModel.updateNote(note)
                 Toast.makeText(this, "Note is updated!", Toast.LENGTH_LONG).show()
             }
-
             finish()
+
         }
     }
 
@@ -80,11 +107,11 @@ class AddNoteActivity : AppCompatActivity() {
         finish()
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         if (note != null) {
             menuInflater.inflate(R.menu.menu_add_note, menu)
         }
-
         return super.onCreateOptionsMenu(menu)
     }
 

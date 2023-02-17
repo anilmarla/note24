@@ -4,4 +4,7 @@
     <dimen name="txt_title">18sp</dimen>
     <dimen name="txt_note">16sp</dimen>
     <dimen name="txt_subtitle">14sp</dimen>
+    <dimen name="margin_extra_regular">32dp</dimen>
+    <dimen name="margin_double_extra_regular">64dp</dimen>
+    <dimen name="text_size_login">45sp</dimen>
 </resources>

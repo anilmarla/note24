@@ -2,6 +2,7 @@ package com.anil.notes24.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings.Global.getInt
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -20,19 +21,21 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
     private val viewModel: MainViewModel by viewModels()
     private var isNotesPresent: Boolean = false
 
+    val userId: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         adapter = NotesListAdapter(this)
         binding.recyclerView.adapter = adapter
 
         binding.fab.setOnClickListener {
-            val intent = Intent(this, AddNoteActivity::class.java)
+            val intent = Intent(this, AddNoteActivity::class.java).apply { putExtra("userId", userId) }
             startActivity(intent)
         }
-
         viewModel.notes.observe(this) {
             Log.e("MainActivity", "$it")
 
@@ -56,7 +59,6 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
         if (isNotesPresent) {
             menuInflater.inflate(R.menu.menu_home, menu)
         }
-
         return super.onCreateOptionsMenu(menu)
     }
 

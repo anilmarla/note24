@@ -31,9 +31,9 @@ class NotesListAdapter(val listener: NotesListAdapterListener) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(note: Note) {
             binding.title.text = note.title
-            binding.note.text = note.note.replace("\n", ", ")
-            binding.date.text = formatDate(Date(note.createdAt))
-
+          binding.note.text = note.todo
+            //binding.date.text = formatDate(Date(note.createdAt))
+            binding.note.text = note.todo
             binding.root.setOnClickListener {
                 listener.onNoteClicked(note)
             }
@@ -58,5 +58,6 @@ class NotesListAdapter(val listener: NotesListAdapterListener) :
     interface NotesListAdapterListener {
         fun onNoteClicked(note: Note)
     }
+
 }
 

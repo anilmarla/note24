@@ -14,4 +14,10 @@
     <string name="no_notes_message">Hello, All your notes shows up here!</string>
     <string name="delete_all">Delete all</string>
     <string name="delete_all_notes">Do you want to delete all notes? This action can\'t be undone</string>
+    <string name="email">Enter email id </string>
+    <string name="password">Enter password</string>
+    <string name="login">login</string>
+    <string name="enter_email_error">Please enter email</string>
+    <string name="enter_password_error">"please enter password "</string>
+    <string name="no_internet_message">Internet is not avilable</string>
 </resources>

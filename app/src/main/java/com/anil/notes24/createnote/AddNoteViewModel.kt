@@ -2,31 +2,36 @@ package com.anil.notes24.createnote
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.anil.notes24.database.AppDatabase
 import com.anil.notes24.model.Note
+import com.anil.notes24.model.User
 import com.anil.notes24.repository.NotesRepository
+import com.anil.notes24.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Date
-import java.util.UUID
+import java.util.*
 
 class AddNoteViewModel(application: Application) : AndroidViewModel(application) {
     private var notesRepository: NotesRepository
+    private var userRepository: UserRepository
+
+    var user: LiveData<User>
 
     init {
-        val notesDao = AppDatabase.getDatabase(application).noteDao()
-
-        notesRepository = NotesRepository(notesDao)
+        notesRepository = NotesRepository(application)
+        userRepository = UserRepository(application)
+        user = userRepository.getUser()
     }
 
-    fun addNote(note: String, title: String) {
+    fun addNote(todo: String, title: String) {
         val n = Note(
             id = UUID.randomUUID().toString(),
             title = title,
-            note = note,
-            createdAt = Date().time
-        )
+            note = todo,
+            createdAt = Date().time,
+
+            )
 
         viewModelScope.launch(Dispatchers.IO) {
             notesRepository.insert(n)
@@ -46,6 +51,12 @@ class AddNoteViewModel(application: Application) : AndroidViewModel(application)
             viewModelScope.launch(Dispatchers.IO) {
                 notesRepository.delete(note)
             }
+        }
+    }
+
+    fun getUser() {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.getUser()
         }
     }
 }

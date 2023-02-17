@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.anil.notes24.model.Note
+import com.anil.notes24.model.User
 
 @Database(
-    entities = [Note::class], version = 2
+    entities = [Note::class, User::class], version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun noteDao(): NoteDao
+    abstract fun userDao(): UserDao
 
     companion object {
         // Singleton prevents multiple
@@ -31,5 +33,6 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
+
     }
 }
