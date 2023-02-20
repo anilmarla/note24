@@ -1,4 +1,4 @@
-package com.anil.notes24.home
+package com.anil.notes24.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -40,7 +40,7 @@ class NotesListAdapter(val listener: NotesListAdapterListener) :
         }
 
         private fun formatDate(date: Date): String {
-            val formatter = SimpleDateFormat("MM/dd/yyyy, hh:mm a", Locale.US)
+            val formatter = SimpleDateFormat("EEE, d MMM, hh:mm a", Locale.US)
             return formatter.format(date)
         }
     }

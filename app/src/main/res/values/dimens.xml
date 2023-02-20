@@ -4,4 +4,9 @@
     <dimen name="txt_title">18sp</dimen>
     <dimen name="txt_note">16sp</dimen>
     <dimen name="txt_subtitle">14sp</dimen>
+    <dimen name="splash_logo_margin_top">200dp</dimen>
+    <dimen name="logo_text_notes">50sp</dimen>
+    <dimen name="text_regular">16sp</dimen>
+    <dimen name="indicator_size">50dp</dimen>
+    <dimen name="logo_24_size">140sp</dimen>
 </resources>

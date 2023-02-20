@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pink"
+    tools:context=".ui.home.splashScreen.SplashActivity">
+
+    <TextView
+        android:id="@+id/logo_txt_notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/splash_logo_margin_top"
+        android:text="@string/notes"
+        android:textColor="@color/white"
+        android:textSize="@dimen/logo_text_notes"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/logo_num" />
+
+    <TextView
+        android:id="@+id/logo_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notes_logo_24"
+        android:textColor="@color/white"
+        android:textSize="@dimen/logo_24_size"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/logo_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notes_description"
+        android:textColor="@color/yellow"
+        android:textSize="@dimen/text_regular"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo_num" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/default_margin"
+        app:indicatorSize="@dimen/indicator_size"
+        app:indicatorColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/logo_desc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

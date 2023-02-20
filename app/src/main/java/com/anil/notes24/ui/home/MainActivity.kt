@@ -1,4 +1,4 @@
-package com.anil.notes24.home
+package com.anil.notes24.ui.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.anil.notes24.R
-import com.anil.notes24.createnote.AddNoteActivity
+import com.anil.notes24.ui.home.createnote.AddNoteActivity
 import com.anil.notes24.databinding.ActivityMainBinding
 import com.anil.notes24.model.Note
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

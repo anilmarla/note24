@@ -1,4 +1,4 @@
-package com.anil.notes24.createnote
+package com.anil.notes24.ui.home.createnote
 
 import android.os.Bundle
 import android.text.Editable
@@ -37,7 +37,7 @@ class AddNoteActivity : AppCompatActivity() {
         }
 
         // open keyboard
-        binding.txtInputEdit.requestFocus()
+        binding.txtInputEditTitle.requestFocus()
 
         binding.btnCreate.setOnClickListener {
             val title = binding.txtInputEditTitle.text
@@ -54,7 +54,6 @@ class AddNoteActivity : AppCompatActivity() {
                 viewModel.updateNote(note)
                 Toast.makeText(this, "Note is updated!", Toast.LENGTH_LONG).show()
             }
-
             finish()
         }
     }
