@@ -1,4 +1,4 @@
-package com.anil.notes24.createnote
+package com.anil.notes24.ui.createnote
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,11 +9,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.anil.notes24.R
 import com.anil.notes24.databinding.ActivityAddNoteBinding
-import com.anil.notes24.home.MainViewModel
-import com.anil.notes24.home.NotesListAdapter
+import com.anil.notes24.ui.home.MainViewModel
 import com.anil.notes24.model.Note
-import com.anil.notes24.network.responseData
-import com.anil.notes24.ui.main.LoginViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class AddNoteActivity : AppCompatActivity() {
@@ -37,7 +34,6 @@ class AddNoteActivity : AppCompatActivity() {
         viewModel.user.observe(this) {
             userId = it.id
         }
-
         /*
         loginViewModel.loggedInUser.observe(this){
             it?.let {

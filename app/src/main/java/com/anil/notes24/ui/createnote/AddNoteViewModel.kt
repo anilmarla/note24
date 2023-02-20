@@ -1,4 +1,4 @@
-package com.anil.notes24.createnote
+package com.anil.notes24.ui.createnote
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

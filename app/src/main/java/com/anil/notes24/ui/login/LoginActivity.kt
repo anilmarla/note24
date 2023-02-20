@@ -1,8 +1,8 @@
-package com.anil.notes24
+package com.anil.notes24.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.anil.notes24.ui.main.LoginFragment
+import com.anil.notes24.R
 
 class LoginActivity : AppCompatActivity() {
 

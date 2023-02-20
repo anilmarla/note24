@@ -1,4 +1,4 @@
-package com.anil.notes24.home
+package com.anil.notes24.ui.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.anil.notes24.base.SingleLiveEvent
-import com.anil.notes24.database.AppDatabase
 import com.anil.notes24.model.Note
 import com.anil.notes24.network.Result
 import com.anil.notes24.network.request.CreateToDoRequest

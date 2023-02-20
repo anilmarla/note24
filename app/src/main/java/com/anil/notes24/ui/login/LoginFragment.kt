@@ -1,4 +1,4 @@
-package com.anil.notes24.ui.main
+package com.anil.notes24.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.anil.notes24.R
 import com.anil.notes24.databinding.FragmentLoginBinding
-import com.anil.notes24.home.MainActivity
+import com.anil.notes24.ui.home.MainActivity
 import com.anil.notes24.network.Result
 import timber.log.Timber
 

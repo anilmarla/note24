@@ -18,6 +18,4 @@ interface ApiService {
     suspend fun addToDo(
         @Body payload: CreateToDoRequest
     ): Response<Note>
-
-
 }

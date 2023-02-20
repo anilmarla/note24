@@ -1,4 +1,4 @@
-package com.anil.notes24.ui.main
+package com.anil.notes24.ui.login
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.anil.notes24.base.SingleLiveEvent
 import com.anil.notes24.model.User
 import com.anil.notes24.network.Result
-import com.anil.notes24.network.request.CreateToDoRequest
 import com.anil.notes24.network.request.LoginRequest
 import com.anil.notes24.repository.UserRepository
 import kotlinx.coroutines.Dispatchers

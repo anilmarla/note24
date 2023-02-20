@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.anil.notes24.model.User
 
-
 @Dao
 interface UserDao {
     //delete all users

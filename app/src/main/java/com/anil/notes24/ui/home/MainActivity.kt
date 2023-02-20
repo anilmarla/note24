@@ -1,8 +1,7 @@
-package com.anil.notes24.home
+package com.anil.notes24.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings.Global.getInt
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -10,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.anil.notes24.R
-import com.anil.notes24.createnote.AddNoteActivity
+import com.anil.notes24.ui.createnote.AddNoteActivity
 import com.anil.notes24.databinding.ActivityMainBinding
 import com.anil.notes24.model.Note
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
     private val viewModel: MainViewModel by viewModels()
     private var isNotesPresent: Boolean = false
 
-    val userId: Int? = null
+    private val userId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,8 @@ class MainActivity : AppCompatActivity(), NotesListAdapter.NotesListAdapterListe
         binding.recyclerView.adapter = adapter
 
         binding.fab.setOnClickListener {
-            val intent = Intent(this, AddNoteActivity::class.java).apply { putExtra("userId", userId) }
+            val intent =
+                Intent(this, AddNoteActivity::class.java).apply { putExtra("userId", userId) }
             startActivity(intent)
         }
         viewModel.notes.observe(this) {

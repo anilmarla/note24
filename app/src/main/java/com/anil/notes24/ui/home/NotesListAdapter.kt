@@ -1,4 +1,4 @@
-package com.anil.notes24.home
+package com.anil.notes24.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
